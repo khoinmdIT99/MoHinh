@@ -1,0 +1,41 @@
+﻿@model TechAndTools.Web.InputModels.Addresses.AddressCreateInputModel
+
+@{
+    ViewData["Title"] = "Нов Адрес";
+}
+
+<div class="container">
+    <hr />
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-center">
+        <form class="rounded p-3 w-50 mx-auto mt-3" asp-controller="Addresses" asp-action="Create">
+            <div class="form-group">
+                <label asp-for="City" class="control-label h6"></label>
+                <input asp-for="@Model.City" class="form-control" />
+                <span asp-validation-for="@Model.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityAddress" class="control-label h6"></label>
+                <input asp-for="@Model.CityAddress" class="form-control" />
+                <span asp-validation-for="@Model.CityAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label h6"></label>
+                <input asp-for="@Model.PostCode" class="form-control" />
+                <span asp-validation-for="@Model.PostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-outline-primary btn-lg"> Добави</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+}
+

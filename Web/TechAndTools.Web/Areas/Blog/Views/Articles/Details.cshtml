@@ -1,0 +1,51 @@
+﻿@model DetailsArticleViewModel
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="~/css/blog_single_styles.css">
+}
+
+<div class="home d-flex justify-content-center mt-3">
+    <div class="home_background">
+        <img src="@Model.ImageUrl"/>
+    </div>
+</div>
+
+<div class="single_post">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="single_post_title"> @Model.Title</div>
+                <hr />
+                <div class="single_post_text">
+                    <p> @Model.Content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="blog_posts d-flex flex-row align-items-start justify-content-between">
+
+                    @foreach (var article in (IEnumerable<AllArticleViewModel>)TempData["last-articles"])
+                    {
+                        <div class="blog_post">
+                            <div class="blog_image" style="background-image: url(@article.ImgUrl)"></div>
+                            <div class="blog_text">@article.Title</div>
+                            <div class="blog_button"><a asp-area="Blog" asp-controller="Articles" asp-action="Details" asp-route-articleId="@article.Id">Continue Reading</a></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/blog_single_custom.js"></script>
+}

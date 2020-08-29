@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.MainCategories.MainCategoryViewModel>
+
+@{
+    ViewData["Title"] = "Главни категории";
+}
+
+@section Styles
+{
+    <style>
+        select {
+            color: black
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+}
+
+<hr />
+<div class="container">
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <table id="myTable" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Име
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-primary btn-sm" asp-area="Administration" asp-controller="MainCategories" asp-action="Edit" asp-route-id="@item.Id">Промени</a>
+
+                        <a class="btn btn-outline-danger btn-sm" asp-area="Administration" asp-controller="MainCategories" asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+}

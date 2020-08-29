@@ -1,0 +1,96 @@
+﻿@using TechAndTools.Web.ViewModels.Brands
+@using TechAndTools.Web.ViewModels.Categories
+@model TechAndTools.Web.InputModels.Products.ProductCreateInputModel
+
+@{
+    ViewData["Title"] = "Създай продукт";
+}
+
+<form class="rounded p-3 w-50 mx-auto mt-3" asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+    <hr />
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr/>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="d-flex justify-content-between">
+        <div class="form-group col-md-12">
+            <label asp-for="Name" class="control-label h6"></label>
+            <input asp-for="Name" class="form-control"/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+
+        <div class="form-group col-md-4">
+            <label asp-for="DocumentationUrl" class="control-label h6"></label>
+            <input asp-for="DocumentationUrl" class="form-control"/>
+            <span asp-validation-for="DocumentationUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="BrandId" class="control-label h6 ml-2"></label>
+            <select class="form-control" id="brand-Category" asp-for="BrandId">
+                <option selected disabled>--- Select Brand ---</option>
+                @foreach (var brand in (IEnumerable<BrandListViewModel>) this.ViewData["brands"])
+                {
+                    <option value="@brand.Id">@brand.Name</option>
+                }
+            </select>
+            <span asp-validation-for="BrandId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Warranty" class="control-label h6"></label>
+            <input asp-for="Warranty" class="form-control"/>
+            <span asp-validation-for="Warranty" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="form-group col-md-4">
+            <label asp-for="Price" class="control-label h6"></label>
+            <input asp-for="Price" class="form-control"/>
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label asp-for="ProductCategoryId" class="control-label h6 ml-2"></label>
+            <select class="form-control" id="product-Category" asp-for="ProductCategoryId">
+                <option selected disabled>--- Select Category ---</option>
+                @foreach (var category in (IEnumerable<CategoryListViewModel>) this.ViewData["categories"])
+                {
+                    <option value="@category.Id">@category.Name (@category.MainCategoryName)</option>
+                }
+            </select>
+            <span asp-validation-for="ProductCategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="QuantityInStock" class="control-label h6"></label>
+            <input asp-for="QuantityInStock" class="form-control"/>
+            <span asp-validation-for="QuantityInStock" class="text-danger"></span>
+        </div>
+    </div>
+    <hr/>
+    <div class="d-flex justify-content-between">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label asp-for="ImageFormFile" class="control-label h6"></label>
+                <input asp-for="ImageFormFile" class="form-control-file" multiple/>
+                <span asp-validation-for="ImageFormFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Description" class="control-label h6"></label>
+            <textarea rows="5" asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <hr/>
+    <div class="form-group text-center">
+        <button class="btn btn-outline-primary btn-lg"> Създай</button>
+    </div>
+    <hr />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

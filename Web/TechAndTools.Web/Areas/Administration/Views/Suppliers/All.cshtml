@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Suppliers.SupplierAllViewModel>
+
+@{
+    ViewData["Title"] = "Куриери";
+}
+
+@section Styles
+{
+    <style>
+        select {
+            color: black
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+}
+
+<hr />
+<div class="container col-8">
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <table id="myTable" class="table display">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Име
+                </th>
+                <th>
+                   Цена до офис
+                </th>
+                <th>
+                    Цена до адрес
+                </th>
+                <th>
+                    Време за доставка
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.PriceToOffice
+                    </td>
+                    <td>
+                        @item.PriceToAddress
+                    </td>
+                    <td>
+                        @item.DeliveryTimeInDays
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary" asp-area="Administration" asp-controller="Suppliers" asp-action="Edit" asp-route-id="@item.Id">Промени</a>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#flipFlop">
+                            Изтрий
+                        </button>
+                        <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="modalLabel">Сигурни ли сте?</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-danger" asp-area="Administration" asp-controller="Suppliers" asp-action="Delete" asp-route-id="@item.Id">Потвъди</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+}

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Articles.AllArticleViewModel>
+
+@{
+    ViewData["Title"] = "All";
+}
+
+<div>
+    <div class="container">
+        <div class="row mt-3">
+            <hr />
+            @foreach (var article in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mt-2 mb-2 ml-2">
+                        <div class="d-flex justify-content-center mt-3">
+                            <img class="card-img" style="width: auto; height: 125px" src="@article.ImgUrl" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title"> @string.Join("", article.Title.Take(35))...</h4>
+                            <p class="card-text"> @string.Join("", article.Content.Take(75))...</p>
+                            <h5 class="text-center">Author: @article.Author</h5>
+                            <div class="d-flex justify-content-between">
+                                <div class="col-md-6 mt-2">
+                                    <div class="d-flex justify-content-start">
+                                        <a asp-area="Blog"
+                                           asp-controller="Articles"
+                                           asp-action="Details"
+                                           asp-route-articleId="@article.Id" class="btn btn-outline-success "> Виж</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <div class="d-flex justify-content-end">
+                                        <div>
+                                            <a asp-area="Administration"
+                                               asp-controller="Articles"
+                                               asp-action="Edit"
+                                               asp-route-id="@article.Id" class="btn btn-outline-primary"> Промени</a>
+                                        </div>
+                                        <div class="ml-2">
+                                            <a asp-area="Administration"
+                                               asp-controller="Articles"
+                                               asp-action="Delete"
+                                               asp-route-id="@article.Id" class="btn btn-outline-danger"> Изтрий</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                <div class="views">
+                                    @article.CreatedOn.ToString("yyyy MMMM dd hh:mm:ss")
+                                </div>
+                                <div class="stats">
+                                    <i class="far fa-eye"></i> @article.TimesRead
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

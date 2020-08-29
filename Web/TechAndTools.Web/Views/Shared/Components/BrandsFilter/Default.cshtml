@@ -1,0 +1,10 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Brands.BrandListViewModel>
+
+<div class="sidebar_section">
+    <div class="sidebar_subtitle brands_subtitle"> Марка</div>
+    <ul class="brands_list">
+        @foreach (var brand in Model) {
+            <li class="brand"><a href="#">@brand.Name</a></li>
+        }
+    </ul>
+</div>

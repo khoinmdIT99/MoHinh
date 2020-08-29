@@ -1,0 +1,13 @@
+﻿@model IList<TechAndTools.Web.ViewModels.Categories.CategoryListViewModel>
+
+<div class="sidebar_section">
+    <div class="sidebar_title"> Категории</div>
+    <ul class="sidebar_categories">
+        @foreach (var category in Model)
+        {
+            <li><a asp-area="" asp-controller="Home" asp-action="Index" asp-route-categoryId="@category.Id">
+                @category.Name
+            </a></li>
+        }
+    </ul>
+</div>

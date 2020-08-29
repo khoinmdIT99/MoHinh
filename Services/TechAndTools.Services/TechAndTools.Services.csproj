@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BrandService.cs~RF3a05542.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+    <PackageReference Include="Moq" Version="4.12.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commons\TechAndTools.Commons\TechAndTools.Commons.csproj" />
+    <ProjectReference Include="..\..\Data\TechAndTools.Data.Models\TechAndTools.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\TechAndTools.Data\TechAndTools.Data.csproj" />
+    <ProjectReference Include="..\..\Web\TechAndTools.Web.InputModels\TechAndTools.Web.InputModels.csproj" />
+    <ProjectReference Include="..\TechAndTools.Services.Models\TechAndTools.Services.Models.csproj" />
+  </ItemGroup>
+
+</Project>

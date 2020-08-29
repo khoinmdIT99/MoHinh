@@ -1,0 +1,113 @@
+﻿<nav class="main_nav d-flex flex-row">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="main_nav_content">
+                    <div class="main_nav_menu ml-auto">
+                        <ul class="standard_dropdown main_nav_dropdown">
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index"> Към Магазина</a>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Поръчки<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Orders" asp-action="Unprocessed"> Необработени</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Orders" asp-action="Processed"> Обработени</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Orders" asp-action="Delivered"> Доставени</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Запитвания<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Contacts" asp-action="All"> Нови</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Contacts" asp-action="AllArchived"> Архив</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Продукти<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Products" asp-action="Create"> Добави</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Products" asp-action="All"> Всички</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Марки<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Brands" asp-action="Create"> Добави</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Brands" asp-action="All"> Всички</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Категории<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li class="hassubs">
+                                        <a href="#"> Главни<i class="fas fa-chevron-right"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a asp-area="Administration" asp-controller="MainCategories" asp-action="Create"> Добави</a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="Administration" asp-controller="MainCategories" asp-action="All"> Всички</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="hassubs">
+                                        <a href="#"> Категории<i class="fas fa-chevron-right"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a asp-area="Administration" asp-controller="Categories" asp-action="Create"> Добави</a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="Administration" asp-controller="Categories" asp-action="All"> Всички</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Куриери<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Suppliers" asp-action="Create"> Добави</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Suppliers" asp-action="All"> Всички</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hassubs">
+                                <a href="#"> Статии<i class="fas fa-chevron-down"></i></a>
+                                <ul>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Articles" asp-action="Create"> Добави</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="Administration" asp-controller="Articles" asp-action="All"> Всички</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

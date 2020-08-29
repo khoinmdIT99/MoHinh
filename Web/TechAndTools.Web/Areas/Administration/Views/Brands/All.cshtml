@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Brands.BrandIndexViewModel>
+
+@{
+    ViewData["Title"] = "Марки";
+}
+
+@section Styles
+{
+    <style>
+        select {
+            color:black
+        }
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+}
+
+<hr />
+<div class="container">
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <table id="myTable" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Име
+                </th>
+                <th>
+                    Лого
+                </th>
+                <th>
+                    Официален сайт
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.LogoUrl
+                </td>
+                <td>
+                    @item.OfficialSite
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" asp-area="Administration" asp-controller="Brands" asp-action="Edit" asp-route-id="@item.Id"> Промени</a>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#flipFlop">
+                        Изтрий
+                    </button>
+                    <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="modalLabel">Сигурни ли сте?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-danger" asp-area="Administration" asp-controller="Brands" asp-action="Delete" asp-route-id="@item.Id"> Потвърди</a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Затвори</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+}

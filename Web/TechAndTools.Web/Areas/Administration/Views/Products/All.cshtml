@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Products.ProductAllViewModel>
+
+@{
+    ViewData["Title"] = "Продукти";
+}
+
+@section Styles
+{
+    <style>
+        select {
+            color: black
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+}
+
+<hr />
+<div class="container">
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <table id="myTable" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Снимка
+                </th>
+                <th>
+                    Продукт
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th>
+                    Категория
+                </th>
+                <th>
+                    Наличност
+                </th>
+                <th>
+                    Продажби
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    <img src="@item.Images.FirstOrDefault()?.ImageUrl" width="60" height="60">
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @item.ProductCategoryName
+                </td>
+                <td>
+                    @item.QuantityInStock
+                </td>
+                <td>
+                    @item.SalesCount
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" asp-area="Administration" asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id">Промени</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-area="Administration" asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+}

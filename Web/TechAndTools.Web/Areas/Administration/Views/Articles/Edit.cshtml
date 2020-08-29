@@ -1,0 +1,39 @@
+﻿@model TechAndTools.Web.InputModels.Articles.EditArticleInputModel
+
+@{
+    ViewData["Title"] = "Промени публикация";
+}
+
+<hr />
+<div class="container">
+    <div class="text-center text-primary" style="text-transform: uppercase">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-center">
+        <form class="form-group" enctype="multipart/form-data" asp-area="Administration" asp-controller="Articles" asp-action="Edit" method="post">
+            <hr />
+            <div class="form-group">
+                <label class="h6" asp-for="@Model.Title"></label>
+                <input asp-for="@Model.Title" class="form-control" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="h6" asp-for="@Model.Content"></label>
+                <textarea asp-for="@Model.Content" class="form-control" rows="5" cols="60">
+            Enter details here...
+         </textarea>
+                <span asp-validation-for="@Model.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="h6" asp-for="@Model.ImageFormFile"></label>
+                <input type="file" asp-for="@Model.ImageFormFile" class="form-control-file" multiple>
+                <span asp-validation-for="@Model.ImageFormFile" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary"> Запази</button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,93 @@
+﻿@model TechAndTools.Web.ViewModels.Orders.DetailsOrderViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="~/css/cart_styles.css">
+}
+
+
+<div class="h3 text-center mt-3">Детайли за поръчка #@Model.Id</div>
+<div class="container">
+    <div class="col-md-12">
+        <div class="row clearfix">
+            <div class="col-md-4">
+                <hr />
+                <div class="h6">
+                    Данни за пратката:
+                    <hr />
+                    <p class="mb-0"><strong>Получател:</strong> @Model.Recipient</p>
+                    <p class="mb-0"><strong>Номер на получателя:</strong> @Model.RecipientPhoneNumber</p>
+                    <p class="mb-0"><strong>Град:</strong> @Model.AddressCity</p>
+                    <p class="mb-0"><strong>Адрес:</strong> @Model.AddressAddressStreet</p>
+                    <p class="mb-0"><strong>Пощенски код:</strong> @Model.AddressPostCode</p>
+                    <p class="mb-0"><strong>Цена за доставка:</strong> @Model.DeliveryPrice лв.</p>
+                    <p class="mb-0"><strong>Цена за продуктите:</strong> @Model.TotalPrice лв.</p>
+                </div>
+                <hr/>
+                <div class="h6">
+                    Други детайли:
+                    <hr/>
+                    <p class="mb-0"><strong>Номер на поръчката:</strong> @Model.Id</p>
+                    <p class="mb-0"><strong>Статус на поръчката:</strong> @Model.OrderStatusName</p>
+                    <p class="mb-0"><strong>Статус на плащане:</strong> @Model.PaymentStatusName</p>
+                    <p class="mb-0"><strong>Метод на плащане:</strong> @Model.PaymentMethodName</p>
+                    <p class="mb-0"><strong>Дата на поръчката:</strong> @Model.OrderDate</p>
+                    <p class="mb-0"><strong>Очакванa дата за получаване:</strong> @Model.ExpectedDeliveryDate.ToString("d")</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <hr />
+                <div class="h6"> Продукти</div>
+                <hr />
+                <div class="cart_container ">
+                    <div class="cart_items">
+                        <ul class="cart_list">
+                            @foreach (var product in Model.OrderProducts)
+                            {
+                                <li class="cart_item clearfix">
+                                    <div class="cart_item_image" style="width: 125px; height: auto"><img src="@product.ImageUrl" alt=""></div>
+                                    <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                        <div class="cart_item_name cart_info_col">
+                                            <div class="cart_item_title">Продукт</div>
+                                            <div>
+                                                <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">
+                                                    @product.Name
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_item_quantity cart_info_col">
+                                            <div class="cart_item_title">Бр.</div>
+                                            <div>@product.Quantity</div>
+                                        </div>
+                                        <div class="cart_item_price cart_info_col">
+                                            <div class="cart_item_title">Цена</div>
+                                            <div>@product.Price лв.</div>
+                                        </div>
+                                        <div class="cart_item_total cart_info_col">
+                                            <div class="cart_item_title">Общо</div>
+                                            <div>@product.TotalPrice лв.</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="order_total">
+                        <div class="order_total_content text-md-right">
+                            <div class="order_total_title"> Тотал:</div>
+                            <div class="order_total_amount">@Model.OrderProducts.Sum(x => x.Price * x.Quantity) лв.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script src="~/js/cart_custom.js"></script>
+}

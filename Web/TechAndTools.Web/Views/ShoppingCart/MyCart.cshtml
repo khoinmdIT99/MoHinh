@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.ShoppingCart.ShoppingCartProductViewModel>
+
+@{
+    ViewData["Title"] = "Количка";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" type="text/css" href="~/css/cart_styles.css">
+}
+
+<div class="cart_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cart_container">
+                    <div class="cart_title text-center text-primary" style="text-transform: uppercase">
+                        @ViewData["Title"]
+                    </div>
+                    @if (Model.Any())
+                    {
+                        <div class="cart_items">
+                            <ul class="cart_list">
+                                @foreach (var product in Model)
+                                {
+                                    <li class="cart_item clearfix">
+                                        <div class="cart_item_image"><img src="@product.ImageUrl" alt=""></div>
+                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                            <div class="cart_item_name cart_info_col col-md-3">
+                                                <div class="cart_item_title"> Продукт</div>
+                                                <div class="cart_item_text">
+                                                    <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+                                                        @product.Name
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="cart_item_quantity cart_info_col col-md-1">
+                                                <div class="cart_item_title"> Количество</div>
+                                                <div class="cart_item_text"> @product.Quantity</div>
+                                            </div>
+                                            <div class="cart_item_price cart_info_col col-md-2">
+                                                <div class="cart_item_title"> Цена</div>
+                                                <div class="cart_item_text"> @product.Price лв.</div>
+                                            </div>
+                                            <div class="cart_item_total cart_info_col col-md-2">
+                                                <div class="cart_item_title"> Общо</div>
+                                                <div class="cart_item_text"> @product.TotalPrice лв.</div>
+                                            </div>
+                                            <div>
+                                                <div class="cart_item_title"></div>
+                                                <div class="cart_item_text">
+                                                    <a asp-area="" asp-controller="ShoppingCart" asp-action="Delete" asp-route-id="@product.Id"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <!-- Order Total -->
+                        <div class="order_total">
+                            <div class="order_total_content text-md-right">
+                                <div class="order_total_title">Общо за поръчката:</div>
+                                <div class="order_total_amount"> @Model.Sum(x => x.Price * x.Quantity) лв.</div>
+                            </div>
+                        </div>
+
+                        <div class="cart_buttons">
+                            <a class="button cart_button_clear" asp-controller="Home" asp-action="Index"> Продължи с пазаруването</a>
+                            <a class="button cart_button_checkout" asp-controller="Orders" asp-action="Create"> Поръчай</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="jumbotron text-center text-white h4 mt-5" style="background-color: #0E8CE4"> Няма добавени продукти в количката.</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/cart_custom.js"></script>
+}

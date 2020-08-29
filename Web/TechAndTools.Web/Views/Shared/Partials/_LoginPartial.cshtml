@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<TechAndToolsUser> SignInManager
+@inject UserManager<TechAndToolsUser> UserManager
+
+<header class="header">
+    <div class="top_bar">
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex flex-row">
+                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="~/images/phone.png" alt=""></div>+359 333 333 333</div>
+                    <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="~/images/mail.png" alt=""></div><a href="mailto:TechAndToolsBg@gmail.com">TechAndToolsBg@gmail.com</a></div>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <div class="top_bar_contact_item">
+
+                            <div class="top_bar_icon"></div>
+                            <a asp-area="Administration" asp-controller="Home" asp-action="Index"><i class="fas fa-cogs"></i> Администраторски Панел</a>
+                        </div>
+                    }
+                    <div class="top_bar_content ml-auto">
+                        <div class="top_bar_user">
+                            <div class="user_icon">
+                                <img src="~/images/user.svg" alt="">
+                            </div>
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                <div class="top_bar_menu">
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href="#"> Профил<i class="fas fa-chevron-down"></i></a>
+                                            <ul>
+                                                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index"> Настройки</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Favorites" asp-action="My"> Любими </a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Orders" asp-action="My"> Поръчки</a></li>
+                                                <li class="mb-4"><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout"> Изход</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <a asp-area="Identity" asp-page="/Account/Logout"> Изход</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div><a asp-area="Identity" asp-page="/Account/Register"> Регистрация</a></div>
+                                <div><a asp-area="Identity" asp-page="/Account/Login"> Вход</a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-sm-3 col-3 order-1">
+                    <div class="logo_container">
+                        <div class="logo"><a href="#">T&amp;T-BG</a></div>
+                    </div>
+                </div>
+
+                @await Component.InvokeAsync("Search")
+
+                <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                    <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                        @await Component.InvokeAsync("Favorites")
+
+                        @await Component.InvokeAsync("ShoppingCart")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

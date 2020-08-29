@@ -1,0 +1,29 @@
+﻿@inject SignInManager<TechAndToolsUser> SignInManager
+
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="d-flex justify-content-center">
+    <nav class="navbar navbar-expand-lg navbar-light pt-0 pb-0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="standard_dropdown main_nav_dropdown">
+                <li class="@ManageNavPages.IndexNavClass(ViewContext)">
+                    <a asp-page="./Index" class="nav-link">Профил</a>
+                </li>
+                <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)">
+                    <a id="change-password" asp-page="./ChangePassword" class="nav-link">Смяна на парола</a>
+                </li>
+                @if (hasExternalLogins)
+                {
+                    <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)">
+                        <a id="external-login" asp-page="./ExternalLogins" class="nav-link">Външен вход</a>
+                    </li>
+                }
+                <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)">
+                    <a asp-page="./PersonalData" class="nav-link">Лични данни</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

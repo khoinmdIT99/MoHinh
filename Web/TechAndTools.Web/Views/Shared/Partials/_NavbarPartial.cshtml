@@ -1,0 +1,22 @@
+﻿<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="main_nav_content d-flex flex-row">
+
+                    @await Component.InvokeAsync("CategoriesNavigation")
+
+                    <div class="main_nav_menu ml-auto">
+                        <div class="d-flex justify-content-between">
+                            <ul class="standard_dropdown main_nav_dropdown">
+                                <li><a href="/"> Магазин<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a asp-area="Blog" asp-controller="Articles" asp-action="All"> Блог<i class="fas fa-chevron-down"></i></a></li>
+                                <li><a asp-area="" asp-controller="Contacts" asp-action="Contacts"> Контакти<i class="fas fa-chevron-down"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

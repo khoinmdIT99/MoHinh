@@ -1,0 +1,9 @@
+﻿@model int
+
+<div class="wishlist d-flex flex-row align-items-center justify-content-end">
+    <div class="wishlist_icon"><img src="~/images/heart.png" alt=""></div>
+    <div class="wishlist_content">
+        <div class="wishlist_text"><a asp-area="" asp-controller="Favorites" asp-action="My"> Любими</a></div>
+        <div class="wishlist_count"> @Model</div>
+    </div>
+</div>

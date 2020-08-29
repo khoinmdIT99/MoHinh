@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TechAndTools.Web.ViewModels.Addresses.AddressViewModel>
+
+@{
+    ViewData["Title"] = "My Addresses";
+}
+
+
+<div class="container">
+    <div class="section-title">
+        <h4 class="title">Моите адреси</h4>
+    </div>
+    <table class="table table-hover text-center">
+        <thead>
+        </thead>
+        <tbody>
+            @foreach (var addressViewModel in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => addressViewModel.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => addressViewModel.CityAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => addressViewModel.PostCode)
+                    </td>
+                    <td>
+                        <a asp-controller="Addresses" asp-action="Delete" asp-route-id="@addressViewModel.Id"><i class="fa fa-close"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-sm primary-btn pull-right" asp-action="Create"> Добави адрес</a>
+</div>
+
+
+
